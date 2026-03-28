@@ -1,6 +1,6 @@
-from faker import Faker
-import psycopg2
 import random
+import psycopg2
+from faker import Faker
 
 fake = Faker()
 
@@ -14,8 +14,8 @@ conn = psycopg2.connect(
 
 cur = conn.cursor()
 
-# --------- Generate Customers ---------
-
+# --------- Customers ---------
+print("Inserting customers...")
 for _ in range(10000):
     cur.execute(
         """
@@ -30,17 +30,16 @@ for _ in range(10000):
             fake.date_between(start_date='-2y', end_date='today')
         )
     )
-
+conn.commit()
 print("Customers inserted")
 
-# --------- Generate Products ---------
-
+# --------- Products ---------
+print("Inserting products...")
 categories = ["Electronics", "Clothing", "Home", "Beauty", "Sports"]
 
 for _ in range(200):
     cost = round(random.uniform(100, 2000), 2)
     price = round(cost * random.uniform(1.1, 1.6), 2)
-
     cur.execute(
         """
         INSERT INTO products (product_name, category, price, cost)
@@ -53,16 +52,15 @@ for _ in range(200):
             cost
         )
     )
-
+conn.commit()
 print("Products inserted")
 
-# --------- Generate Orders ---------
-
+# --------- Orders ---------
+print("Inserting orders...")
 order_ids = []
 
 for _ in range(50000):
     customer_id = random.randint(1, 10000)
-
     cur.execute(
         """
         INSERT INTO orders (customer_id, order_date, status)
@@ -75,20 +73,19 @@ for _ in range(50000):
             random.choice(["completed", "cancelled"])
         )
     )
-
     order_id = cur.fetchone()[0]
     order_ids.append(order_id)
 
+conn.commit()
 print("Orders inserted")
 
-# --------- Generate Order Items ---------
-
+# --------- Order Items ---------
+print("Inserting order items...")
 for order_id in order_ids:
     for _ in range(random.randint(1, 4)):
         product_id = random.randint(1, 200)
         quantity = random.randint(1, 3)
 
-        # Get product price
         cur.execute(
             "SELECT price FROM products WHERE product_id = %s",
             (product_id,)
@@ -103,20 +100,20 @@ for order_id in order_ids:
             (order_id, product_id, quantity, price)
         )
 
+conn.commit()
 print("Order items inserted")
 
-# --------- Generate Payments ---------
-
+# --------- Payments ---------
+print("Inserting payments...")
 for order_id in order_ids:
     cur.execute(
         """
-        SELECT SUM(quantity * selling_price)
+        SELECT COALESCE(SUM(quantity * selling_price), 0)
         FROM order_items
         WHERE order_id = %s
         """,
         (order_id,)
     )
-
     amount = cur.fetchone()[0]
 
     cur.execute(
@@ -132,10 +129,11 @@ for order_id in order_ids:
         )
     )
 
+conn.commit()
 print("Payments inserted")
 
-# --------- Generate Returns ---------
-
+# --------- Returns ---------
+print("Inserting returns...")
 cur.execute("SELECT order_item_id FROM order_items")
 all_items = cur.fetchall()
 
@@ -151,11 +149,7 @@ for item in all_items:
             (item[0],)
         )
 
-print("Returns inserted")
-
-
 conn.commit()
 cur.close()
 conn.close()
-
 print("Full dataset generation complete")
