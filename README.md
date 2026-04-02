@@ -9,6 +9,7 @@ A mid-size e-commerce company is seeing stagnating revenue despite growing order
 **Key Finding:** Retention is the core problem. Customers drop off sharply after their first order, top 10% of customers drive a disproportionate share of revenue, and profit margins are being diluted by low-margin categories receiving equal marketing investment.
 
 **Bottom Line:** Fix Month 1 retention, protect your top customers, and reallocate spend toward high-margin categories.
+
 ---
 
 ## Business Questions Answered
