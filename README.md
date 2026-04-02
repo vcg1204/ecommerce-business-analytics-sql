@@ -2,6 +2,8 @@
 
 A SQL-driven business analytics engine built on PostgreSQL, analyzing 2 years of simulated e-commerce operations across 10,000 customers, 200 products, and 50,000 orders.
 
+---
+
 ## Executive Summary
 
 A mid-size e-commerce company is seeing stagnating revenue despite growing order volume. This project investigates why — analyzing 2 years of operations across 10,000 customers, 200 products and 50,000 orders to identify where revenue is leaking, which customers matter most, and what the business should do next.
@@ -14,47 +16,21 @@ A mid-size e-commerce company is seeing stagnating revenue despite growing order
 
 ## Business Questions Answered
 
-- How has monthly revenue trended over time?
-- Which product categories drive the most revenue and profit?
-- What percentage of revenue comes from the top 10% of customers?
-- How are customers segmented by purchase behavior?
-- Which customer cohorts retain best over time?
-- What is the repeat purchase rate and payment failure rate?
-
----
-
-## Database Schema
-
-6 related tables built in PostgreSQL:
-
-| Table | Description |
-|-------|-------------|
-| customers | 10,000 customers with signup date and city |
-| products | 200 products across 5 categories with cost and price |
-| orders | 50,000 orders with status and timestamp |
-| order_items | Line items per order with quantity and selling price |
-| payments | Payment method, status and amount per order |
-| returns | Returned items with refund amount |
-
----
-
-## SQL Concepts Used
-
-- CTEs (Common Table Expressions)
-- Window Functions — RANK, NTILE, FILTER
-- Multi-table JOINs
-- Cohort Analysis
-- RFM Customer Segmentation
-- Revenue, Profit and Margin Calculations
+* How has monthly revenue trended over time?
+* Which product categories drive the most revenue and profit?
+* What percentage of revenue comes from the top 10% of customers?
+* How are customers segmented by purchase behavior?
+* Which customer cohorts retain best over time?
+* What is the repeat purchase rate and payment failure rate?
 
 ---
 
 ## Key Results
 
-- Top 10% of customers generate a disproportionate share of total revenue
-- Cohort retention drops sharply after Month 1 — signals need for post-purchase engagement
-- Profit margins vary significantly across categories despite similar revenue levels
-- Payment failure rates differ by method — actionable for checkout optimization
+* Top 10% of customers generate a disproportionate share of total revenue — losing this segment would critically impact business health
+* Cohort retention drops sharply after Month 1 — 60-70% of new customers never make a second purchase, representing the single biggest revenue leak
+* Profit margins vary significantly across categories — high revenue categories are not always high profit, making revenue a misleading performance metric
+* Payment failure rates differ by method — high-failure methods are costing the business completed transactions at the final checkout step
 
 ---
 
@@ -67,6 +43,34 @@ A mid-size e-commerce company is seeing stagnating revenue despite growing order
 * **Profit margins vary significantly across categories despite similar revenue** — Reduce paid marketing spend on low-margin categories and reallocate budget toward high-margin ones. Revenue alone is a misleading success metric here.
 
 * **Payment failure rates differ by method** — Surface the highest-success payment methods first at checkout and run a targeted nudge campaign to shift users away from high-failure methods.
+
+---
+
+## Database Schema
+
+6 related tables built in PostgreSQL:
+
+| Table | Description |
+| --- | --- |
+| customers | 10,000 customers with signup date and city |
+| products | 200 products across 5 categories with cost and price |
+| orders | 50,000 orders with status and timestamp |
+| order_items | Line items per order with quantity and selling price |
+| payments | Payment method, status and amount per order |
+| returns | Returned items with refund amount |
+
+---
+
+## SQL Concepts Used
+
+* CTEs (Common Table Expressions)
+* Window Functions — RANK, NTILE, FILTER
+* Multi-table JOINs
+* Cohort Analysis
+* RFM Customer Segmentation
+* Revenue, Profit and Margin Calculations
+
+---
 
 ## Sample Output Charts
 
@@ -89,9 +93,9 @@ A mid-size e-commerce company is seeing stagnating revenue despite growing order
 
 ## Tech Stack
 
-- PostgreSQL
-- Python
-- pandas, matplotlib, psycopg2
+* PostgreSQL
+* Python
+* pandas, matplotlib, psycopg2
 
 ---
 
