@@ -50,6 +50,16 @@ A SQL-driven business analytics engine built on PostgreSQL, analyzing 2 years of
 
 ---
 
+## Business Recommendations
+
+* **Retention drops after Month 1** — Launch a post-purchase email sequence triggered at Day 7 and Day 30 for first-time buyers. Focus on product education, reviews, and a small repeat-purchase discount to drive second orders.
+
+* **Top 10% of customers drive disproportionate revenue** — Introduce a VIP loyalty tier for this segment with early access, exclusive offers, and dedicated support. Losing even a fraction of this group has outsized revenue impact.
+
+* **Profit margins vary significantly across categories despite similar revenue** — Reduce paid marketing spend on low-margin categories and reallocate budget toward high-margin ones. Revenue alone is a misleading success metric here.
+
+* **Payment failure rates differ by method** — Surface the highest-success payment methods first at checkout and run a targeted nudge campaign to shift users away from high-failure methods.
+
 ## Sample Output Charts
 
 ### Monthly Revenue Trend
