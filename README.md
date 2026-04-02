@@ -2,6 +2,13 @@
 
 A SQL-driven business analytics engine built on PostgreSQL, analyzing 2 years of simulated e-commerce operations across 10,000 customers, 200 products, and 50,000 orders.
 
+## Executive Summary
+
+A mid-size e-commerce company is seeing stagnating revenue despite growing order volume. This project investigates why — analyzing 2 years of operations across 10,000 customers, 200 products and 50,000 orders to identify where revenue is leaking, which customers matter most, and what the business should do next.
+
+**Key Finding:** Retention is the core problem. Customers drop off sharply after their first order, top 10% of customers drive a disproportionate share of revenue, and profit margins are being diluted by low-margin categories receiving equal marketing investment.
+
+**Bottom Line:** Fix Month 1 retention, protect your top customers, and reallocate spend toward high-margin categories.
 ---
 
 ## Business Questions Answered
